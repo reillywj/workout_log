@@ -1,0 +1,7 @@
+<% label_type = (user.role == "Coach" ? "alert" : "success") %>
+
+<div class="panel">
+  <p>Name: <%= user.name %></p>
+  <p>Email: <%= user.email %></p>
+  <span class="label <%= label_type %> radius"><%= user.role %></span>
+</div>

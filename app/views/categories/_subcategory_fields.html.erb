@@ -1,0 +1,16 @@
+ <div class="row nested-fields"> 
+  <div class="small-4 large-4 column">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="small-2 large-2 column">
+    <%= f.label :rank %>
+    <%= f.text_field :rank %>
+  </div>
+
+
+  <div class="small-1 large-1 column end">
+    <%= link_to_remove_association "Delete", f %>
+  </div>
+</div>
+<br>

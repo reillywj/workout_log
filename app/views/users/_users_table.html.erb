@@ -1,0 +1,22 @@
+<% users = @users.select{|x| x.role == role} %>
+
+<h4><%= pluralize(users.size, role) %></h4>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% users.select{|x| x.role == role}.each do |user| %>
+      <% role_type = (user.role == "Coach" ? "alert" : "success") %>
+      <tr>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><span class="label <%= role_type%> radius"><%= user.role %></span></td>
+        <td><%= link_to "Edit", edit_user_path(user) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

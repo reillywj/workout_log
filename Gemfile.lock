@@ -1,8 +1,8 @@
 GIT
-  remote: git://github.com/m-Peter/activeform.git
-  revision: 63676cb8575a25fa3e215bd313eb6aa67606aa97
+  remote: git://github.com/rails/actionform.git
+  revision: 4a858fecf4c2e0fea1716741cdcf91f9d7a0b719
   specs:
-    active_form (0.0.1)
+    actionform (0.0.1)
       rails (~> 4.1)
 
 GEM
@@ -151,7 +151,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_form!
+  actionform!
   coffee-rails (~> 4.1.0)
   foundation-rails
   jbuilder (~> 2.0)

@@ -1,0 +1,22 @@
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="/">Workout Log</a></h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul>
+      <li class="has-dropdown not-click">
+        <a href="#">Categories</a>
+        <ul class="dropdown">
+          <li><%= link_to "Add Category", new_category_path %></li>
+          <li class="divider"></li>
+          <% Category.all.each do |cat| %>
+            <li><%= link_to cat.name, category_path(cat)%></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>

@@ -1,0 +1,18 @@
+<%= form_for @user do |f| %>
+  <%= render "shared/errors", object: @user %>
+  <div class="small-4">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="small-4">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="small-4">
+    <%= f.label :role %>
+    <%= f.select :role, ["Athlete", "Coach"] %>
+  </div>
+  <div>
+    <%= f.submit submit_text, class: "button small radius" %>
+  </div>
+<% end %>

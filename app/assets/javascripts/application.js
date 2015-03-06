@@ -12,5 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require foundation
+//= require action_form
 //= require turbolinks
 //= require_tree .
+
+$(function(){
+  $(window).load(function() {
+    $(document).foundation();
+  });
+});

@@ -1,0 +1,8 @@
+<% flash.each do |name, msg| %>
+  <div data-alert class="alert-box <%= name %>" style="margin-top:0.2rem;">
+    <%= msg %>
+    <%= link_to "#", class: "close" do%>
+    &times;
+    <% end %>
+  </div>
+<% end %>
