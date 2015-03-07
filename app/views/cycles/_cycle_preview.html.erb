@@ -1,0 +1,14 @@
+<div class="panel">
+  <%= link_to edit_user_cycle_path(cycle.user, cycle), class: "right", title: "Edit" do %>
+    <i class="fi-pencil"></i>
+  <% end %>
+
+  <h5><%= link_to cycle.description, user_cycle_path(cycle.user, cycle) %></h5>
+  <hr>
+  Start Date: <%= format_date(cycle.start_date) %><br>
+  Length of Cycle: <%= "#{cycle.length_of_time} #{cycle.length_of_time_units}" %><br>
+  End Date: <%= format_date(cycle.end_date) %>
+  <hr>
+  <%= pluralize(cycle.workouts.size, "Workout") %> Listed
+
+</div>

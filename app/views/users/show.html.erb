@@ -1,3 +1,16 @@
+<% cycles = @user.cycles.sort{|x,y| x.start_date <=> y.start_date} %>
+
 <%= render "shared/content_title", title: "User Profile>#{@user.name}" %>
 
 <%= render "basic_user_info", user: @user %>
+
+<%= link_to "Add Cycle", new_user_cycle_path(@user), class: "button tiny radius success" %>
+<br>
+<strong><%= pluralize(@user.cycles.size,"Cycle")%></strong>
+<div class="row">
+  <% cycles.each do |cycle| %>
+    <div class="small-4 column <%= cycle == cycles.last ? 'end' : ''%>">
+      <%= render "cycles/cycle_preview", cycle: cycle %>
+    </div>
+  <% end %>
+</div>

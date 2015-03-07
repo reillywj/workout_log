@@ -3,4 +3,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates_uniqueness_of :email, case_sensitive: false
   validates :role, presence: true
+
+  has_many :cycles
 end

@@ -1,16 +1,30 @@
- <div class="row nested-fields"> 
-  <div class="small-4 large-4 column">
-    <%= f.label :name %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="small-2 large-2 column">
-    <%= f.label :rank %>
-    <%= f.text_field :rank %>
-  </div>
+ <div class="row panel nested-fields">
+  <div class="row">
+    <div class="large-3 column">
+      <%= f.label :name, "Subcategory Name" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="large-2 column">
+      <%= f.label :rank, "Subcategory Rank" %>
+      <%= f.text_field :rank %>
+    </div>
 
-
-  <div class="small-1 large-1 column end">
-    <%= link_to_remove_association "Delete", f %>
+    <div class="large-1 column end">
+      <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button tiny radius alert" %>
+    </div>
   </div>
 </div>
+
+<div class="row panel" style="margin-bottom:2rem;">
+  <strong>Exercises</strong>
+  <%= f.fields_for :exercises do |exercises_fields| %>
+    <%= render "exercise_fields", f: exercises_fields %>
+  <% end %>
+  <div class="row">
+    <div class="large-1 column">
+      <%= link_to_add_association "<i class='fi-plus'></i>".html_safe, f, :exercises, class: "button tiny radius success" %>
+    </div>
+  </div>
+</div>
+
 <br>

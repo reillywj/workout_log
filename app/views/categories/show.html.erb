@@ -1,7 +1,38 @@
 <%= render "shared/content_title", title: "#{@category.name}" %>
+<div class="row">
+  <div class=" large-6 large-centered column">
+    <%= link_to "Edit", edit_category_path(@category), class: "button expand tiny warning radius" %>    
+  </div>
+</div>
 
-<%= link_to "Edit", edit_category_path(@category), class: "button tiny warning radius" %>
-<br>
-
-Show Subcategories
--Show Exercises
+<hr>
+<% @category.subcategories.sort{|x,y| x.rank <=> y.rank}.each do |subcat| %>
+  <table>
+    <caption><%= "#{subcat.rank}: #{subcat.name}" %></caption>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Exercise Name</th>
+        <th>Nickname</th>
+        <th><i class="fi-widget"></i></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% count = 1 %>
+      <% subcat.exercises.sort{|x,y| x.name <=> y.name}.each do |exercise| %>
+      <tr>
+        <td><%= count %></td>
+        <% count += 1 %>
+        <td><%= exercise.name %></td>
+        <td><%= exercise.nickname %></td>
+        <td>Future Button</td>
+      </tr>
+      <% end %>
+      <% unless count > 1 %>
+        <tr>
+          <td colspan="4">Edit to Add an Exercise</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

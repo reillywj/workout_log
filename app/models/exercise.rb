@@ -4,4 +4,5 @@ class Exercise < ActiveRecord::Base
   validates_uniqueness_of :nickname, scope: :subcategory_id
 
   belongs_to :subcategory
+  has_many :workout_exercises, dependent: :destroy
 end

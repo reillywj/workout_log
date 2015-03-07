@@ -10,18 +10,19 @@
     <%= f.label :abbreviation %>
     <%= f.text_field :abbreviation %>
   </div>
+  <hr>
 
   <h4>Subcategory</h4>
   <%= f.fields_for :subcategories do |s| %>
     <%= render "subcategory_fields", f: s %>
   <% end %>
 
-
+  <hr>
   <div class="row">
-    <%= link_to_add_association "Add Subcategory", f, :subcategories %>
+    <%= link_to_add_association "Add Subcategory", f, :subcategories, class: "button radius small" %>
   </div>
 
   <div class="row">
-    <%= f.submit submit_text, class: "button medium radius" %>
+    <%= f.submit submit_text, class: "button medium radius success" %>
   </div>
 <% end %>

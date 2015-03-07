@@ -4,5 +4,5 @@ class Subcategory < ActiveRecord::Base
   validates_uniqueness_of :rank, scope: :category_id
   
   belongs_to :category
-  has_many :exercises
+  has_many :exercises, dependent: :destroy
 end

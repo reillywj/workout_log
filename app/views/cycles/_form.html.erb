@@ -1,0 +1,38 @@
+<%= form_for [User.find(params[:user_id]), @cycle_form] do |f| %>
+  <%= render "shared/errors", object: @cycle_form %>
+
+  <div class="row">
+    <div class="large-3 column">
+      <%= f.label :start_date %>
+      <%= f.date_field :start_date %>
+    </div>
+    <div class="large-3 column">
+      <%= f.label :legnth_of_time %>
+      <%= f.number_field :length_of_time, in: 1..100, step: 1, placeholder: 4, size: 5 %>
+    </div>
+    <div class="large-2 column end">
+      <%= f.label :length_of_time_units, "Time Units" %>
+      <%= f.select :length_of_time_units, ["Weeks", "Days"]%>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-8 column end">
+      <%= f.label :description %>
+      <%= f.text_field :description, placeholder: "Describe what this cycle is, e.g. 'Competition Preparation' or 'General Strength Cycle'"%>
+    </div>
+  </div>
+
+  <strong>Workouts</strong>
+  <%= f.fields_for :workouts do |workouts_fields| %>
+    <%= render "workout_fields", f: workouts_fields %>
+  <% end %>
+  <div class="row">
+    <%= link_to_add_association "Add Workout", f, :workouts %>
+  </div>
+
+  <div class="row">
+    <div class="large-1 small-expand column end">
+      <%= f.submit submit_text, class: "button medium radius" %>
+    </div>
+  </div>
+<% end %>

@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306022732) do
+ActiveRecord::Schema.define(version: 20150307025040) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.string   "abbreviation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cycles", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "length_of_time"
+    t.string   "length_of_time_units"
+    t.string   "description"
+    t.date     "start_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +51,34 @@ ActiveRecord::Schema.define(version: 20150306022732) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workout_exercises", force: :cascade do |t|
+    t.integer  "workout_id"
+    t.integer  "exercises_id"
+    t.string   "order"
+    t.string   "quick_note"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workout_sets", force: :cascade do |t|
+    t.integer  "workout_exercise_id"
+    t.integer  "weight_or_duration"
+    t.integer  "amount"
+    t.integer  "relative_perceived_exertion"
+    t.string   "work_units"
+    t.string   "amount_units"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "workouts", force: :cascade do |t|
+    t.integer  "cycle_id"
+    t.string   "am_pm"
+    t.date     "date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

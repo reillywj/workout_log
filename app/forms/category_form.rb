@@ -4,5 +4,9 @@ class CategoryForm < ActionForm::Base
 
   association :subcategories do
     attributes :name, :rank
+
+    association :exercises do
+      attributes :name, :nickname
+    end
   end
 end

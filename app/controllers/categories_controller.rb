@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
   before_action :create_new_form, only: [:new, :create]
   before_action :create_edit_form, only: [:edit, :update]
   def show
-    @category = Category.find(params[:id])
   end
 
   def new
@@ -31,7 +30,7 @@ class CategoriesController < ApplicationController
       redirect_to @category_form
     else
       flash[:alert] = "Invalid submission."
-      render :new
+      render :edit
     end
   end
 
@@ -41,7 +40,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
   def category_params
-    params.require(:category).permit(:name, :abbreviation, subcategories_attributes: [:id, :name, :rank])
+    params.require(:category).permit(:name, :abbreviation, subcategories_attributes: [:id, :name, :rank, exercises_attributes: [:id, :name, :nickname]])
   end
 
   def create_new_form

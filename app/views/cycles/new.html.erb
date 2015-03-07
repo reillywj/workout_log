@@ -1,0 +1,4 @@
+<% user = User.find(params[:user_id]) %>
+<%= render "shared/content_title", title: "#{link_to user.name, user_path(user)} > New Cycle".html_safe %>
+
+<%= render "form", submit_text: "Create" %>

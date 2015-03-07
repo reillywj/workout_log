@@ -1,0 +1,15 @@
+<div class="row nested-fields">
+  <div class="large-3 column">
+    <%= f.label :name, "Full Name" %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="large-2 column">
+    <%= f.label :nickname, "Nickname" %>
+    <%= f.text_field :nickname %>
+  </div>
+
+  <div class="large-1 end column">
+    <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button radius tiny alert" %>
+  </div>
+
+</div>

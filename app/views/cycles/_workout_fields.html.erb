@@ -1,0 +1,25 @@
+<div class="row nested-fields" data-equalizer>
+  <div class="row">
+    <div class="small-5 column">
+      <div class="row collapse">
+        <div class="small-2 column">
+          <%= f.label :date %>
+        </div>
+        <div class="small-10 column end">
+          <%= f.date_field :date%>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-3 column">
+          <%= f.label :am_pm, "AM or PM?" %>
+        </div>
+        <div class="small-9 column end">
+          <%= f.select :am_pm, ["AM", "PM"] %>
+        </div>
+      </div>
+    </div>
+    <div class="small-1 column end">
+      <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button small radius alert", style: "margin-top:1.1rem;" %>
+    </div>
+  </div>
+</div>
