@@ -1,0 +1,23 @@
+<% workout_exercises = workout.workout_exercises.sort{|x,y| x.order <=> y.order} %>
+<%= link_to edit_user_cycle_workout_path(workout.cycle.user, workout.cycle, workout), class: "button tiny radius warning", title: "Edit this workout" do %>
+  <i class="fi-pencil"></i>
+<% end %>
+<table>
+  <section><%= format_date(workout.date) %> in the <%= workout.am_pm %></section>
+  <thead>
+    <th>#</th>
+    <th>Exercise</th>
+    <th># Sets</th>
+    <th>Notes</th>
+  </thead>
+  <tbody>
+    <% workout_exercises.each do |e| %>
+      <tr>
+        <td><%= e.order %></td>
+        <td><%= e.exercise.nickname %></td>
+        <td><%= e.workout_sets.size %></td>
+        <td><%= e.quick_note %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

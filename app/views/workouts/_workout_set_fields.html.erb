@@ -1,0 +1,25 @@
+<div class="row nested-fields">
+  <div class="row">
+    <div class="small-2 column">
+      <%= f.number_field :weight_or_duration%>
+    </div>
+    <div class="small-2 column">
+      <%= f.select :work_units, ["kilograms", "pounds", "minutes", "seconds"]%>
+    </div>
+    <div class="small-2 column">
+      <%= f.number_field :amount %>
+    </div>
+    <div class="small-2 column">
+      <%= f.select :amount_units, ["reps", "meters", "kilometers", "miles"] %>
+    </div>
+    <div class="small-2 column">
+      <%= f.select :relative_perceived_exertion, 1..10 %>
+    </div>
+    <div class="small-1 column">
+      <%= f.check_box :completion, {}, "true", "false" %>
+    </div>
+    <div class="small-1 column end">
+      <%= link_to_remove_association "X", f, class: "button tiny radius alert"%>
+    </div>
+  </div>
+</div>

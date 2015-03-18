@@ -1,0 +1,39 @@
+<div class="row nested-fields">
+  <div class="row">
+    <div class="small-1 column">
+      <%= f.text_field :order %>
+    </div>
+    <div class="small-4 column">
+      <%= f.grouped_collection_select(:exercise_id, Category.for_group_select, :exercises, :name, :id, :name) %>
+    </div>
+    <div class="small-6 column">
+      <%= f.text_field :quick_note %>
+    </div>
+    <div class="small-1 column end">
+      <%= link_to_remove_association "X", f, class: "button tiny radius alert" %>
+    </div>
+  </div>
+  <div>
+    <strong>Sets</strong>
+    <div class="row">
+      <div class="small-2 column">Weight/Duration</div>
+      <div class="small-2 column">Units</div>
+      <div class="small-2 column">Number/Distance</div>
+      <div class="small-2 column">Units</div>
+      <div class="small-2 column">Relative Perceived Exertion</div>
+      <div class="small-1 column end">Completed?</div>
+    </div>
+    <%= f.fields_for :workout_sets do |workout_set_fields| %>
+      <%= render "workout_set_fields", f: workout_set_fields %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <div class="large-1 column">
+      <%= link_to_add_association "Add Set", f, :workout_sets %>
+    </div>
+  </div>
+</div>
+
+
+<hr>

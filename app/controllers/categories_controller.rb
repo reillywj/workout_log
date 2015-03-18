@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
     @category = Category.find(params[:id])
   end
   def category_params
-    params.require(:category).permit(:name, :abbreviation, subcategories_attributes: [:id, :name, :rank, exercises_attributes: [:id, :name, :nickname]])
+    params.require(:category).permit(:name, :abbreviation, subcategories_attributes: [:id, :name, :rank, :_destroy, exercises_attributes: [:id, :name, :nickname, :_destroy]])
   end
 
   def create_new_form

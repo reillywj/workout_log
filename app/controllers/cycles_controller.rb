@@ -20,6 +20,20 @@ class CyclesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    @cycle_form.submit(cycle_params)
+    if @cycle_form.save
+      flash[:success] = "Cycle updated."
+      redirect_to user_cycle_path(@cycle.user, @cycle)
+    else
+      flash[:alert] = "Invalid submission."
+      render :edit
+    end
+  end
+
 
   private
   def set_cycle

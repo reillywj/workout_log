@@ -1,0 +1,39 @@
+<%= form_for [@workout.cycle.user, @workout.cycle, @workout_form] do |f| %>
+  <%= render "shared/errors", object: @workout_form %>
+
+  <div class="row">
+    <div class="medium-3 column">
+      <%= f.label :date %>
+      <%= f.date_field :date %>
+    </div>
+    
+    <div class="medium-2 column end">
+      <%= f.label :am_pm, "AM or PM?", title: "Morning (AM) or Afternoon(PM)?" %>
+      <%= f.select :am_pm, ["AM", "PM"] %>
+    </div>
+  </div>
+  <hr>
+  <strong>Exercises</strong>
+  <div class="row">
+    <div class="small-1 column">Order</div>
+    <div class="small-4 column">Exercise</div>
+    <div class="small-7 column end">Note</div>
+  </div>
+  <%= f.fields_for :workout_exercises do |workout_exercise_fields| %>
+    <%= render "workout_exercise_fields", f: workout_exercise_fields %>
+  <% end %>
+
+  <div class="row">
+    <%= link_to_add_association "Add Exercise", f, :workout_exercises %>
+  </div>
+
+  <hr>
+  <div class="row">
+    <div class="large-2 column">
+      <%= f.submit submit_text, class: "button medium radius" %>
+    </div>
+    <div class="large-2 column end">
+      <%= link_to "Cancel", user_cycle_path(@workout.cycle.user, @workout.cycle), class: "button medium radius secondary" %>
+    </div>
+  </div>
+<% end %>

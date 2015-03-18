@@ -10,21 +10,22 @@
     </div>
 
     <div class="large-1 column end">
-      <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button tiny radius alert" %>
+      <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button tiny radius alert", data: {confirm: "Are you sure? Note: won't be deleted for good until you update."} %>
+    </div>
+  </div>
+  <div class="row panel" style="margin-bottom:2rem;">
+    <strong>Exercises</strong>
+    <%= f.fields_for :exercises do |exercises_fields| %>
+      <%= render "exercise_fields", f: exercises_fields %>
+    <% end %>
+    <div class="row">
+      <div class="large-1 column">
+        <%= link_to_add_association "<i class='fi-plus'></i>".html_safe, f, :exercises, class: "button tiny radius success" %>
+      </div>
     </div>
   </div>
 </div>
 
-<div class="row panel" style="margin-bottom:2rem;">
-  <strong>Exercises</strong>
-  <%= f.fields_for :exercises do |exercises_fields| %>
-    <%= render "exercise_fields", f: exercises_fields %>
-  <% end %>
-  <div class="row">
-    <div class="large-1 column">
-      <%= link_to_add_association "<i class='fi-plus'></i>".html_safe, f, :exercises, class: "button tiny radius success" %>
-    </div>
-  </div>
-</div>
+
 
 <br>

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update]
+  before_action :require_same_user_or_admin, only: [:edit, :update]
 
   def index
     @users = User.all
@@ -38,10 +39,22 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :role)
+    params.require(:user).permit(:name, :email, :password, :role)
   end
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def require_same_user_or_admin
+    binding.pry
+    unless (current_user == @user) || (current_user.role == "Admin")
+      error_message
+    end
+  end
+
+  def error_message
+    flash[:alert] = "You cannot do that."
+    redirect_to root_path
   end
 end

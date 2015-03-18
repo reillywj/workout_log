@@ -22,17 +22,25 @@
     </div>
   </div>
 
+  <br>
   <strong>Workouts</strong>
+  <hr>
   <%= f.fields_for :workouts do |workouts_fields| %>
     <%= render "workout_fields", f: workouts_fields %>
   <% end %>
   <div class="row">
-    <%= link_to_add_association "Add Workout", f, :workouts %>
+    <div class="large-3 column end">
+      <%= link_to_add_association "Add Workout", f, :workouts, class: "button radius small success" %>
+    </div>
   </div>
+  <br>
 
-  <div class="row">
-    <div class="large-1 small-expand column end">
+  <div class="row collapse">
+    <div class="large-2 column">
       <%= f.submit submit_text, class: "button medium radius" %>
+    </div>
+    <div class="large-2 column end">
+      <%= link_to "Cancel", user_path(@cycle.user), class: "button medium radius secondary" %>
     </div>
   </div>
 <% end %>

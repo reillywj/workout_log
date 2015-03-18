@@ -9,7 +9,6 @@
   </div>
 
   <div class="large-1 end column">
-    <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button radius tiny alert" %>
+    <%= link_to_remove_association "<i class='fi-x'></i>".html_safe, f, class: "button radius tiny alert", data: {confirm: "Are you sure? Note: won't be deleted until you select update."} %>
   </div>
-
 </div>

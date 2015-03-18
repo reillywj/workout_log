@@ -18,4 +18,14 @@ class Cycle < ActiveRecord::Base
     end
     return start + time * multi
   end
+
+  def sort_workouts_for_show
+    self.workouts.sort do |x,y|
+      if x.date == y.date
+        x.am_pm <=> y.am_pm
+      else
+        x.date <=> y.date
+      end
+    end
+  end
 end

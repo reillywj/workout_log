@@ -1,7 +1,15 @@
 Rails.application.routes.draw do
   root 'users#index'
+
+  get '/register', to: 'users#new'
+  get '/login', to: "sessions#new"
+  post '/login', to: "sessions#create"
+  get '/logout', to: "sessions#destroy"
+
   resources :users do
-    resources :cycles
+    resources :cycles do
+      resources :workouts, only: [:new, :create, :edit, :update]
+    end
   end
   resources :categories
   # The priority is based upon order of creation: first created -> highest priority.

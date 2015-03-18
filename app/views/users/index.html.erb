@@ -1,15 +1,17 @@
 <%= render "shared/content_title", title: "Users Index" %>
 
-<%= link_to "Add User", new_user_path, class: "button medium radius" %>
+<% if logged_in? && ["Coach", "Admin"].include?(current_user.role) %>
+  <%= link_to "Add User", new_user_path, class: "button medium radius" %>
+<% end %>
 
-<ul class="small-block-grid-1 medium-block-grid-2">
+<ul class="small-block-grid-1 medium-block-grid-2" data-equalizer >
   <li>
-    <div class="panel">
+    <div class="panel callout" data-equalizer-watch>
       <%= render "users_table", users: @users, role: "Athlete" %>
     </div>
   </li>
   <li>
-    <div class="panel">
+    <div class="panel" data-equalizer-watch>
       <%= render "users_table", users: @users, role: "Coach" %>
     </div>
   </li>

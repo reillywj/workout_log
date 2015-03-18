@@ -1,7 +1,13 @@
 <% label_type = (user.role == "Coach" ? "alert" : "success") %>
 
 <div class="panel">
+  <% if logged_in? and current_user == user %>
+    <%= link_to edit_user_path(user), class: "right" do %>
+      <i class="fi-pencil" title="Edit"></i>
+    <% end %>
+  <% end %>
   <p>Name: <%= user.name %></p>
   <p>Email: <%= user.email %></p>
   <span class="label <%= label_type %> radius"><%= user.role %></span>
+  
 </div>

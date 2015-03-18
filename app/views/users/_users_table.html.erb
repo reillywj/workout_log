@@ -6,16 +6,24 @@
     <tr>
       <th>Name</th>
       <th>Role</th>
-      <th></th>
+      <% if logged_in? and current_user.role == role %>
+        <th></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% users.select{|x| x.role == role}.each do |user| %>
       <% role_type = (user.role == "Coach" ? "alert" : "success") %>
       <tr>
-        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= link_to user.name, user_path(user), title: "View Profile" %></td>
         <td><span class="label <%= role_type%> radius"><%= user.role %></span></td>
-        <td><%= link_to "Edit", edit_user_path(user) %></td>
+        <% if  logged_in? and current_user == user %>
+        <td>
+          <%= link_to edit_user_path(user) do %>
+            <i class="fi-pencil" title="Edit"></i>
+          <% end %>
+        </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
