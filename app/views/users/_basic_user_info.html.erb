@@ -1,4 +1,5 @@
 <% label_type = (user.role == "Coach" ? "alert" : "success") %>
+<% label_type = "warning" if user.role == "Admin" %>
 
 <div class="panel">
   <% if logged_in? and current_user == user %>

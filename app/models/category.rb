@@ -5,6 +5,8 @@ class Category < ActiveRecord::Base
   has_many :subcategories, dependent: :destroy
   has_many :exercises, through: :subcategories
 
+  belongs_to :team
+
   def self.for_select
     self.all.sort{|x,y| x.name <=> y.name}.map{|x| [x, x.exercises.map{|y| [y.name, y.id]}]}
   end

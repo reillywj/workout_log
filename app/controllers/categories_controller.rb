@@ -2,6 +2,7 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   before_action :create_new_form, only: [:new, :create]
   before_action :create_edit_form, only: [:edit, :update]
+  before_action :require_user, only: [:show, :new, :create, :edit, :update]
   def show
   end
 
@@ -50,5 +51,14 @@ class CategoriesController < ApplicationController
 
   def create_edit_form
     @category_form = CategoryForm.new(@category)
+  end
+  def require_user
+    unless logged_in?
+      error_message
+    end
+  end
+  def error_message
+    flash[:alert] = "Access denied."
+    redirect_to root_path
   end
 end

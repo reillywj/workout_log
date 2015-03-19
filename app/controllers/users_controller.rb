@@ -47,7 +47,6 @@ class UsersController < ApplicationController
   end
 
   def require_same_user_or_admin
-    binding.pry
     unless (current_user == @user) || (current_user.role == "Admin")
       error_message
     end

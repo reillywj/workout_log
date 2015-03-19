@@ -1,0 +1,14 @@
+<%= render "shared/content_title", title: "Edit Team Info" %>
+
+<%= form_for @team do |f| %>
+  <%= render "shared/errors", object: @team %>
+  <div class="small-4">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="small-4">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+  <%= f.submit "Update", class: "button small radius" %>
+<% end %>

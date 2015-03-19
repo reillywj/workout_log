@@ -1,6 +1,9 @@
 <% workout_exercises = workout.workout_exercises.sort{|x,y| x.order <=> y.order} %>
-<%= link_to edit_user_cycle_workout_path(workout.cycle.user, workout.cycle, workout), class: "button tiny radius warning", title: "Edit this workout" do %>
-  <i class="fi-pencil"></i>
+
+<% if logged_in? and user_is_current_user_coach_or_admin?(workout.cycle.user) %>
+  <%= link_to edit_user_cycle_workout_path(workout.cycle.user, workout.cycle, workout), class: "button tiny radius warning", title: "Edit this workout" do %>
+    <i class="fi-pencil"></i>
+  <% end %>
 <% end %>
 <table>
   <section><%= format_date(workout.date) %> in the <%= workout.am_pm %></section>

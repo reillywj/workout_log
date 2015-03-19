@@ -18,7 +18,14 @@
       <%= render "layouts/messages" %>
       <%= yield %>
     </div>
-
+    
     <%= render "layouts/footer" %>
+    <script type="text/javascript">
+      $(function(){
+        $(window).load(function() {
+          $(document).foundation();
+        });
+      }); 
+    </script>
   </body>
 </html>

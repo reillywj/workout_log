@@ -1,8 +1,10 @@
-<%= render "shared/content_title", title: "#{@cycle.user.name} > #{@cycle.length_of_time} #{@cycle.length_of_time_units} Cycle, #{format_date(@cycle.start_date)}" %>
+<%= render "shared/content_title", title: "#{link_to @cycle.user.name, user_path(@cycle.user)} > #{@cycle.length_of_time} #{@cycle.length_of_time_units} Cycle, #{format_date(@cycle.start_date)}".html_safe %>
 <h4><%= @cycle.description %> Cycle</h4>
 
-<%= link_to "Edit Cycle", edit_user_cycle_path(@cycle.user, @cycle), class: "button radius warning small right" %>
-<%= link_to "Add Workout", new_user_cycle_workout_path(@cycle.user, @cycle), class: "button radius success small" %>
+<% if logged_in? and user_is_current_user_coach_or_admin?(@cycle.user) %>
+  <%= link_to "Edit Cycle", edit_user_cycle_path(@cycle.user, @cycle), class: "button radius warning small right" %>
+  <%= link_to "Add Workout", new_user_cycle_workout_path(@cycle.user, @cycle), class: "button radius success small" %>
+<% end %>
 
 <ul class="accordion" data-accordion>
   <% count = 1 %>

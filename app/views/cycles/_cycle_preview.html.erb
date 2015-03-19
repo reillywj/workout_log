@@ -1,6 +1,8 @@
 <div class="panel">
-  <%= link_to edit_user_cycle_path(cycle.user, cycle), class: "right", title: "Edit" do %>
-    <i class="fi-pencil"></i>
+  <% if logged_in? and user_is_current_user_coach_or_admin?(cycle.user) %>
+    <%= link_to edit_user_cycle_path(cycle.user, cycle), class: "right", title: "Edit" do %>
+      <i class="fi-pencil"></i>
+    <% end %>
   <% end %>
 
   <h5><%= link_to cycle.description, user_cycle_path(cycle.user, cycle) %></h5>

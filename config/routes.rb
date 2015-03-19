@@ -1,10 +1,14 @@
 Rails.application.routes.draw do
-  root 'users#index'
+  root 'teams#show_user_team'
 
-  get '/register', to: 'users#new'
+  get '/register', to: 'teams#new'
   get '/login', to: "sessions#new"
   post '/login', to: "sessions#create"
   get '/logout', to: "sessions#destroy"
+
+  resources :teams do
+    resources :categories
+  end
 
   resources :users do
     resources :cycles do

@@ -7,4 +7,5 @@ class User < ActiveRecord::Base
   validates :role, presence: true
 
   has_many :cycles
+  belongs_to :team
 end

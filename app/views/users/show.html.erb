@@ -1,10 +1,11 @@
 <% cycles = @user.cycles.sort{|x,y| x.start_date <=> y.start_date} %>
 
-<%= render "shared/content_title", title: "User Profile>#{@user.name}" %>
+<%= render "shared/content_title", title: "User Profile" %>
 
 <%= render "basic_user_info", user: @user %>
-
+<% if logged_in? and (current_user == @user or ["Coach", "Admin"].include?(current_user.role)) %>
 <%= link_to "Add Cycle", new_user_cycle_path(@user), class: "button tiny radius success" %>
+<% end %>
 <br>
 <strong><%= pluralize(@user.cycles.size,"Cycle")%></strong>
 <div class="row">

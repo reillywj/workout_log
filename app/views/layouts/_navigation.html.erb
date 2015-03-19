@@ -22,22 +22,29 @@
       </ul>
       <ul class="right">
         <li class="has-dropdown not-click">
-          <a href="#"><%= pluralize(athletes.size, "Athlete")%></a>
+          <%= link_to current_user.name, "#"%>
           <ul class="dropdown">
-            <% athletes.each do |athlete| %>
-              <li><%= link_to athlete.name, user_path(athlete)%></li>
-            <% end %>
-            <li class="divider"></li>
-            <li><%= link_to "Add Athlete", new_user_path %></li>
+            <li><%= link_to "Profile", user_path(current_user) %></li>
+            <li> <%= link_to "Logout", logout_path%></li>
           </ul>
         </li>
-        <li>
-          <%= link_to "Logout", logout_path %>
-        </li>
+        <% if ["Coach", "Admin"].include?(current_user.role) %>
+          <li class="divider"></li>
+          <li class="has-dropdown not-click">
+            <a href="#"><%= pluralize(athletes.size, "Athlete")%></a>
+            <ul class="dropdown">
+              <% athletes.each do |athlete| %>
+                <li><%= link_to athlete.name, user_path(athlete)%></li>
+              <% end %>
+              <li class="divider"></li>
+              <li><%= link_to "Add Athlete", new_user_path %></li>
+            </ul>
+          </li>
+        <% end %>
       </ul>
     <% else %>
 
-      <ul class="left">
+      <ul class="right">
         <li class="divider"></li>
         <li>
           <%= link_to "Register", register_path%>

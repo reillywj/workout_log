@@ -1,0 +1,8 @@
+<%= render "shared/content_title", title: "All Teams" %>
+
+<h5><%= pluralize(@teams.size, "Team") %></h5>
+<ul>
+  <% @teams.each do |team| %>
+    <li><%= link_to "#{team.name} (#{team.location})", team_path(team)%></li>
+  <% end %>
+</ul>

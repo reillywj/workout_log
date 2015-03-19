@@ -1,4 +1,4 @@
-<% users = @users.select{|x| x.role == role} %>
+<% users = users.select{|x| x.role == role} %>
 
 <h4><%= pluralize(users.size, role) %></h4>
 <table>
@@ -6,7 +6,7 @@
     <tr>
       <th>Name</th>
       <th>Role</th>
-      <% if logged_in? and current_user.role == role %>
+      <% if logged_in? and (current_user.role == role or current_user.role == "Admin" ) %>
         <th></th>
       <% end %>
     </tr>
@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to user.name, user_path(user), title: "View Profile" %></td>
         <td><span class="label <%= role_type%> radius"><%= user.role %></span></td>
-        <% if  logged_in? and current_user == user %>
+        <% if  logged_in? and (current_user == user or current_user.role == "Admin")%>
         <td>
           <%= link_to edit_user_path(user) do %>
             <i class="fi-pencil" title="Edit"></i>

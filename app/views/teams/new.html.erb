@@ -1,0 +1,39 @@
+<%= render "shared/content_title", title: "Create New Team and Register as a Coach" %>
+
+<%= form_for @team do |f| %>
+  <%= render "shared/errors", object: @team %>
+  <div class="small-4">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="small-4">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+  <%= fields_for :user, @team.users.first do |user_field| %>
+    <div class="panel small-4">
+      <h5>Coach Information</h5>
+      <div>
+        <%= user_field.label :name %>
+        <%= user_field.text_field :name %>
+      </div>
+      <div>
+        <%= user_field.label :email %>
+        <%= user_field.text_field :email %>
+      </div>
+      <div>
+        <%= user_field.label :password %>
+        <%= user_field.password_field :password %>
+      </div>
+      <div>
+        <%= user_field.label :role %>
+        <%= user_field.select :role, ["Coach"] %>
+      </div>
+    </div>
+  <% end %>
+  <div class="small-4">
+    <%= f.submit "Create", class: "button small radius expand" %>
+  </div>
+<% end %>
+
+<h5>Already have an account? <%= link_to "Login Here", login_path %></h5>

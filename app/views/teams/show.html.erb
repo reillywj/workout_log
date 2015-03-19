@@ -1,0 +1,26 @@
+<%= render "shared/content_title", title: "Team Page" %>
+
+<div class="panel">
+  <%= link_to edit_team_path(@team), class: "right" do %>
+    <i class="fi-pencil"></i>
+  <% end %>
+  <h5><%= @team.name %></h5>
+  <p><%= @team.location %></p>
+</div>
+
+<% if logged_in? && ["Coach", "Admin"].include?(current_user.role) %>
+  <%= link_to "Add User", new_user_path, class: "button medium radius" %>
+<% end %>
+
+<ul class="small-block-grid-1 medium-block-grid-2" data-equalizer >
+  <li>
+    <div class="panel callout" data-equalizer-watch>
+      <%= render "users/users_table", users: @team.users, role: "Athlete" %>
+    </div>
+  </li>
+  <li>
+    <div class="panel" data-equalizer-watch>
+      <%= render "users/users_table", users: @team.users, role: "Coach" %>
+    </div>
+  </li>
+</ul>

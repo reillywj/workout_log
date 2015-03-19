@@ -1,3 +1,17 @@
+<% if logged_in? %>
+  <% role_selection = if current_user == @user and current_user.role == "Admin" %>
+    <%["Admin"]%>
+  <% elsif current_user.role == "Admin" %>
+    <% [ "Athlete", "Coach", "Admin" ] %>
+  <% elsif current_user == @user and current_user.role == "Coach" %>
+    <% [ "Coach" ] %>
+  <% elsif current_user.role == "Coach" %>
+    <% ["Athlete", "Coach"] %>
+  <% else %>
+    <% ["Athlete"] %>
+  <% end %>
+<% end %>
+
 <%= form_for @user do |f| %>
   <%= render "shared/errors", object: @user %>
   <div class="small-4">
@@ -14,9 +28,10 @@
   </div>
   <div class="small-4">
     <%= f.label :role %>
-    <%= f.select :role, ["Athlete", "Coach"] %>
+    <%= f.select :role, role_selection %>
   </div>
   <div>
     <%= f.submit submit_text, class: "button small radius" %>
+    <%= link_to "Cancel", root_path, class: "button small radius secondary" %>
   </div>
 <% end %>
