@@ -30,7 +30,7 @@ example_categories.each do |cat|
   for i in 1..5 do
     subcat = Subcategory.create(name: "Subcat Name #{i}", rank: i, category: c)
     for j in 1..5 do
-      Exercise.create(name: "Exercise #{j} for Subcat #{i}", nickname: "Shrt Nm", subcategory: subcat)
+      Exercise.create(name: "Exercise #{j} for Subcat #{i}", nickname: "Shrt Nm #{i + j}", subcategory: subcat)
     end
   end
 end
