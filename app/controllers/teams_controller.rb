@@ -32,8 +32,9 @@ class TeamsController < ApplicationController
     @team.users << User.new(params.require(:user).permit(:name, :email, :password, :role))
     if @team.save
       flash[:success] = "Team created!"
-      binding.pry
-      redirect_to "categories/new"
+      user = User.where(email: params[:user][:email]).first
+      session[:user_id] = user.id
+      redirect_to root_path
     else
       flash[:alert] = "Invalid."
       render :new
@@ -58,7 +59,7 @@ class TeamsController < ApplicationController
   end
 
   def set_team
-    @team = Team.find(params[:id])
+    @team = Team.find_by(slug: params[:id])
   end
 
   def require_admin

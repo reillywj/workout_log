@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :logged_in?, :user_is_coach?, :user_is_current_user_coach_or_admin?
+  helper_method :current_user, :logged_in?, :user_is_coach?, :user_is_current_user_coach_or_admin?, :logged_in_coach_or_admin?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
 
   def user_is_coach?
     logged_in? ? current_user == "Coach" : false
+  end
+
+  def logged_in_coach_or_admin?
+    logged_in? and ["Coach", "Admin"].include?(current_user.role)
   end
 
   def user_is_current_user_or_admin?

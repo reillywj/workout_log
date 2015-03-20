@@ -8,10 +8,10 @@ class Category < ActiveRecord::Base
   belongs_to :team
 
   def self.for_select
-    self.all.sort{|x,y| x.name <=> y.name}.map{|x| [x, x.exercises.map{|y| [y.name, y.id]}]}
+    self.where(team: @workout.user.team).sort{|x,y| x.name <=> y.name}.map{|x| [x, x.exercises.map{|y| [y.name, y.id]}]}
   end
 
-  def self.for_group_select
-    self.all.sort{|x,y| x.name <=> y.name}
+  def self.for_group_select(workout)
+    self.where(team: workout.cycle.user.team).sort{|x,y| x.name <=> y.name}
   end
 end

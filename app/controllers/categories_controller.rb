@@ -46,6 +46,7 @@ class CategoriesController < ApplicationController
 
   def create_new_form
     category = Category.new
+    category.team = current_user.team
     @category_form = CategoryForm.new(category)
   end
 

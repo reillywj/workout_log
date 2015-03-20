@@ -4,7 +4,7 @@
       <%= f.text_field :order %>
     </div>
     <div class="small-4 column">
-      <%= f.grouped_collection_select(:exercise_id, Category.for_group_select, :exercises, :name, :id, :name) %>
+      <%= f.grouped_collection_select(:exercise_id, Category.for_group_select(@workout), :exercises, :name, :id, :name) %>
     </div>
     <div class="small-6 column">
       <%= f.text_field :quick_note %>

@@ -1,4 +1,7 @@
-<% athletes = User.all.select{|x| x.role=="Athlete"}.sort{|x,y| x.name <=> y.name} %>
+<% if logged_in? %>
+  <% athletes = User.where(role: "Athlete").where(team: current_user.team).sort{|x,y| x.name <=> y.name} %>
+  <% coaches = User.where(role: "Coach").where(team: current_user.team).sort{|x,y| x.name <=> y.name} %>
+<% end %>
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
@@ -10,11 +13,14 @@
     <% if logged_in? %>
       <ul>
         <li class="has-dropdown not-click">
-          <a href="#">Categories</a>
+          <% categories = Category.where(team: current_user.team) %>
+          <a href="#"><%= pluralize(categories.size, "Category")%></a>
           <ul class="dropdown">
             <li><%= link_to "Add Category", new_category_path %></li>
             <li class="divider"></li>
-            <% Category.all.each do |cat| %>
+            
+
+            <% categories.each do |cat| %>
               <li><%= link_to cat.name, category_path(cat)%></li>
             <% end %>
           </ul>
@@ -34,10 +40,39 @@
             <a href="#"><%= pluralize(athletes.size, "Athlete")%></a>
             <ul class="dropdown">
               <% athletes.each do |athlete| %>
-                <li><%= link_to athlete.name, user_path(athlete)%></li>
+                <li class="has-dropdown">
+                  <%= link_to athlete.name, user_path(athlete)%>
+                  <ul class="dropdown">
+                    <li><%= link_to "Add Cycle", new_user_cycle_path(athlete)%></li>
+                    <li class="divider"></li>
+                    <% athlete.cycles do |cycle| %>
+                      <li><%= link_to cycle.description, user_cycle_path(athlete, cycle)%></li>
+                    <% end %>
+                  </ul>
+                </li>
               <% end %>
               <li class="divider"></li>
               <li><%= link_to "Add Athlete", new_user_path %></li>
+            </ul>
+          </li>
+          <li class="divider"></li>
+          <li class="has-dropdown not-click">
+            <a href="#"><%= pluralize(coaches.size, "Coach")%></a>
+            <ul class="dropdown">
+              <% coaches.each do |coach| %>
+                <li class="has-dropdown">
+                  <%= link_to coach.name, user_path(coach)%>
+                  <ul class="dropdown">
+                    <li><%= link_to "Add Cycle", new_user_cycle_path(coach)%></li>
+                    <li class="divider"></li>
+                    <% coach.cycles.each do |cycle| %>
+                      <li><%= link_to cycle.description, user_cycle_path(coach, cycle)%></li>
+                    <% end %>
+                  </ul>
+                </li>
+              <% end %>
+              <li class="divider"></li>
+              <li><%= link_to "Add", new_user_path %></li>
             </ul>
           </li>
         <% end %>

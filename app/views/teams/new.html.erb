@@ -1,17 +1,25 @@
 <%= render "shared/content_title", title: "Create New Team and Register as a Coach" %>
 
+<div class="panel">
+  <h3>Welcome to the Team Workout Log</h3>
+  <p>If you have an account please <%= link_to "login here", login_path%>.</p>
+  <p>Otherwise, you or your coach will need to create a team and then you or your coach can add athletes.  If you are using this as an individual, you will need to create a team and be your own "Coach."</p>
+  <p><strong>Coaches</strong> have the privelege of being able to write programs for everyone on the team, and <strong>Athletes</strong> can only write programs for themselves.</p>
+  <p>Both Coaches and Athletes can add exercises to an exercise category.</p>
+</div>
+
 <%= form_for @team do |f| %>
   <%= render "shared/errors", object: @team %>
-  <div class="small-4">
+  <div class="small-12 medium-5 large-4">
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div class="small-4">
+  <div class="small-12 medium-5 large-4">
     <%= f.label :location %>
     <%= f.text_field :location %>
   </div>
   <%= fields_for :user, @team.users.first do |user_field| %>
-    <div class="panel small-4">
+    <div class="panel small-12 medium-5 large-4">
       <h5>Coach Information</h5>
       <div>
         <%= user_field.label :name %>
@@ -31,7 +39,7 @@
       </div>
     </div>
   <% end %>
-  <div class="small-4">
+  <div class="small-12 medium-5 large-4">
     <%= f.submit "Create", class: "button small radius expand" %>
   </div>
 <% end %>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  include Sluggable
   has_secure_password validations: false
 
   validates :name, presence: true
@@ -8,4 +9,6 @@ class User < ActiveRecord::Base
 
   has_many :cycles
   belongs_to :team
+
+  sluggable_column :name
 end

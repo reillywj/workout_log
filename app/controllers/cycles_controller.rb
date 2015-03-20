@@ -43,7 +43,7 @@ class CyclesController < ApplicationController
     params.require(:cycle).permit(:length_of_time, :length_of_time_units, :description, :start_date, workouts_attributes: [:id, :date, :am_pm])
   end
   def create_new_form
-    user = User.find(params[:user_id])
+    user = User.find_by(slug: params[:user_id])
     @cycle = Cycle.new(length_of_time: 4, length_of_time_units: "weeks")
     @cycle.user = user
     @cycle_form = CycleForm.new(@cycle)

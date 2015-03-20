@@ -1,4 +1,4 @@
-<%= form_for [User.find(params[:user_id]), @cycle_form] do |f| %>
+<%= form_for [User.find_by(slug: params[:user_id]), @cycle_form] do |f| %>
   <%= render "shared/errors", object: @cycle_form %>
 
   <div class="row">

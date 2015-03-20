@@ -1,14 +1,16 @@
 <%= render "shared/content_title", title: "Team Page" %>
 
 <div class="panel">
-  <%= link_to edit_team_path(@team), class: "right" do %>
-    <i class="fi-pencil"></i>
+  <% if logged_in_coach_or_admin? %>
+    <%= link_to edit_team_path(@team), class: "right" do %>
+      <i class="fi-pencil"></i>
+    <% end %>
   <% end %>
   <h5><%= @team.name %></h5>
   <p><%= @team.location %></p>
 </div>
 
-<% if logged_in? && ["Coach", "Admin"].include?(current_user.role) %>
+<% if logged_in_coach_or_admin? %>
   <%= link_to "Add User", new_user_path, class: "button medium radius" %>
 <% end %>
 
