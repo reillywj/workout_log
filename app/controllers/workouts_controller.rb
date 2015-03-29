@@ -37,7 +37,6 @@ class WorkoutsController < ApplicationController
   end
 
   def workout_params
-    binding.pry
     params.require(:workout).permit(:date, :am_pm, workout_exercises_attributes: [:id, :order, :quick_note, :exercise_id, :_destroy, workout_sets_attributes: [:id, :weight_or_duration, :amount, :relative_perceived_exertion, :work_units, :amount_units, :completion, :_destroy]])
   end
 
