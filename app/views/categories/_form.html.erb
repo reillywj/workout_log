@@ -1,6 +1,8 @@
 <%= form_for @category_form do |f| %>
   <%= render "shared/errors", object: @category_form %>
-  <h4>Category</h4>
+
+
+  <h4><span data-tooltip aria-haspopup="true" class="has-tip" title="A Category is intended to be the highest level grouping of exercises. An example would be Olympic Lifts or Snatch. It depends on how you wish to organize the subcategories.">Category</span></h4>
   <div class="small-4">
     <%= f.label :name %>
     <%= f.text_field :name %>
@@ -12,7 +14,7 @@
   </div>
   <hr>
 
-  <h4>Subcategory</h4>
+  <h4><span data-tooltip aria-haspopup="true" class="has-tip" title="A subcategory is intended to be the lowest level grouping of exercises. If the parent category is Olympic Lifts then subcategories might be Snatch and Clean. If the parent category is Conditioning subcategories might be Running, Swimming, or Biking.">Subcategory</span></h4>
   <%= f.fields_for :subcategories do |s| %>
     <%= render "subcategory_fields", f: s %>
   <% end %>

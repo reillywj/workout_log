@@ -15,6 +15,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.team = current_user.team
     if @user.save
       flash[:success] = "User created!"
       redirect_to user_path(@user)

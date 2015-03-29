@@ -1,6 +1,6 @@
 class Category < ActiveRecord::Base
   validates :name, presence: true
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, scope: :team
 
   has_many :subcategories, dependent: :destroy
   has_many :exercises, through: :subcategories
