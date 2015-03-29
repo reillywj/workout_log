@@ -10,7 +10,7 @@
   <% count = 1 %>
   <% @cycle.sort_workouts_for_show.each do |workout| %>
     <li class="accordion-navigation">
-      <a href='#workout-<%= "#{workout.date}-#{count}"%>'><%= format_date(workout.date) %>: <%= workout.am_pm %></a>
+      <a href='#workout-<%= "#{workout.date}-#{count}"%>'><%= format_date(workout.date) %>: <%= workout.am_pm %> (Click to See)</a>
       <div id='<%= "workout-#{workout.date}-#{count}"%>' class="content">
         <%= render "workouts/workout_preview", workout: workout %>
       </div>

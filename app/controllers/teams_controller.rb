@@ -34,7 +34,7 @@ class TeamsController < ApplicationController
       flash[:success] = "Team created!"
       user = User.where(email: params[:user][:email]).first
       session[:user_id] = user.id
-      redirect_to root_path
+      redirect_to new_team_category_path(@team)
     else
       flash[:alert] = "Invalid."
       render :new
