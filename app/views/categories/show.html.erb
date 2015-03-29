@@ -6,9 +6,9 @@
 </div>
 
 <hr>
-<% @category.subcategories.sort{|x,y| x.rank <=> y.rank}.each do |subcat| %>
+<% @category.subcategories.sort{|x,y| x.name <=> y.name}.each do |subcat| %>
   <table>
-    <caption><%= "#{subcat.rank}: #{subcat.name}" %></caption>
+    <caption><%= "#{subcat.name}" %></caption>
     <thead>
       <tr>
         <th></th>

@@ -28,7 +28,7 @@ example_categories = [["Free Weights", "FW"], ["Conditioning", "Cond"], ["Body W
 example_categories.each do |cat|
   c = Category.create(name: cat[0], abbreviation: cat[1], team: team_example)
   for i in 1..5 do
-    subcat = Subcategory.create(name: "Subcat Name #{i}", rank: i, category: c)
+    subcat = Subcategory.create(name: "Subcat Name #{i}", category: c)
     for j in 1..5 do
       Exercise.create(name: "Exercise #{j} for Subcat #{i}", nickname: "Shrt Nm #{i}#{j}", subcategory: subcat)
     end

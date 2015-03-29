@@ -3,7 +3,7 @@ class CategoryForm < ActionForm::Base
   attributes :name, :abbreviation
 
   association :subcategories do
-    attributes :name, :rank
+    attributes :name
 
     association :exercises do
       attributes :name, :nickname
