@@ -9,14 +9,16 @@
 </div>
 
 <%= form_for @team do |f| %>
-  <%= render "shared/errors", object: @team %>
-  <div class="small-12 medium-5 large-4">
-    <%= f.label :name, "Team Name" %>
-    <%= f.text_field :name %>
-  </div>
-  <div class="small-12 medium-5 large-4">
-    <%= f.label :location %>
-    <%= f.text_field :location %>
+  <div class="panel small-12 medium-5 large-4">
+    <%= render "shared/errors", object: @team %>
+    <div class="small-12 medium-12 large-12">
+      <%= f.label :name, "Team Name" %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="small-12 medium-12 large-12">
+      <%= f.label :location %>
+      <%= f.text_field :location %>
+    </div>
   </div>
   <%= fields_for :user, @team.users.first do |user_field| %>
     <div class="panel small-12 medium-5 large-4">
