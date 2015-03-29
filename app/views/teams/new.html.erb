@@ -1,4 +1,4 @@
-<%= render "shared/content_title", title: "Create New Team and Register as a Coach" %>
+<%= render "shared/content_title", title: "Create New Team and Register as a Coach or Go to Login" %>
 
 <div class="panel">
   <h3>Welcome to the Team Workout Log</h3>
@@ -11,7 +11,7 @@
 <%= form_for @team do |f| %>
   <%= render "shared/errors", object: @team %>
   <div class="small-12 medium-5 large-4">
-    <%= f.label :name %>
+    <%= f.label :name, "Team Name" %>
     <%= f.text_field :name %>
   </div>
   <div class="small-12 medium-5 large-4">
